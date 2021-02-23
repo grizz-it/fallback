@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) GrizzIT, Inc. All rights reserved.
  * See LICENSE for license details.
@@ -21,14 +22,14 @@ class FallbackStack implements FallbackStackInterface
      *
      * @var ValidatorInterface
      */
-    private $validator;
+    private ValidatorInterface $validator;
 
     /**
      * Contains the fallbacks.
      *
-     * @var FallbackInterface;
+     * @var FallbackInterface[]
      */
-    private $fallback;
+    private array $fallback;
 
     /**
      * Constructor
@@ -68,7 +69,7 @@ class FallbackStack implements FallbackStackInterface
      * @throws FallbackValidationFailedException When the return is invalid.
      * @throws FallbackStackFailedException When the entire stack fails.
      */
-    public function __invoke(...$parameters)
+    public function __invoke(mixed ...$parameters): mixed
     {
         usort($this->fallback, function (array $left, array $right): int {
             return $left['position'] <=> $right['position'];

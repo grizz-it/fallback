@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) GrizzIT, Inc. All rights reserved.
  * See LICENSE for license details.
@@ -16,7 +17,7 @@ class FallbackValidationFailedException extends FallbackException
      * @param ValidatorInterface $callable
      * @param mixed              $return
      */
-    public function __construct(ValidatorInterface $validator, $return)
+    public function __construct(ValidatorInterface $validator, mixed $return)
     {
         parent::__construct(
             sprintf(

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) GrizzIT, Inc. All rights reserved.
  * See LICENSE for license details.
@@ -25,14 +26,14 @@ class Fallback implements FallbackInterface
      *
      * @var ValidatorInterface;
      */
-    private $validator;
+    private ValidatorInterface $validator;
 
     /**
      * The parameters which override the parameters passed through the invocation.
      *
      * @var array
      */
-    private $parameters;
+    private array $parameters;
 
     /**
      * Constructor
@@ -44,7 +45,7 @@ class Fallback implements FallbackInterface
     public function __construct(
         callable $callable,
         ValidatorInterface $validator = null,
-        ...$parameters
+        mixed ...$parameters
     ) {
         $this->callable   = $callable;
         $this->validator  = $validator ?? new AlwaysValidator(true);
@@ -57,8 +58,10 @@ class Fallback implements FallbackInterface
      * @param mixed ...$parameters
      *
      * @return mixed
+     *
+     * @throws FallbackFailedException When none of the callables return a valid response.
      */
-    public function __invoke(...$parameters)
+    public function __invoke(mixed ...$parameters): mixed
     {
         $parameters = $this->parameters + $parameters;
         $return = ($this->callable)(...$parameters);

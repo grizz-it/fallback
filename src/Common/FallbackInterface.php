@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) GrizzIT, Inc. All rights reserved.
  * See LICENSE for license details.
@@ -15,5 +16,5 @@ interface FallbackInterface
      *
      * @return mixed
      */
-    public function __invoke(...$parameters);
+    public function __invoke(mixed ...$parameters): mixed;
 }

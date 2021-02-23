@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) GrizzIT, Inc. All rights reserved.
  * See LICENSE for license details.
@@ -6,7 +7,7 @@
 
 namespace GrizzIt\Fallback\Common;
 
-interface FallbackStackInterface
+interface FallbackStackInterface extends FallbackInterface
 {
     /**
      * Adds a fallback to the fallback stack.
@@ -20,13 +21,4 @@ interface FallbackStackInterface
         FallbackInterface $fallback,
         int $position = 0
     ): void;
-
-    /**
-     * Invokes the stack in order, untill a valid result is returned.
-     *
-     * @param mixed ...$parameters
-     *
-     * @return mixed
-     */
-    public function __invoke(...$parameters);
 }
